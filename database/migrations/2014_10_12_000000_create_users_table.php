@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
-{
+class CreateUsersTable extends Migration {
+
     /**
      * Run the migrations.
      *
@@ -17,7 +17,8 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('mobile')->unique();
-            $table->timestamp('mobile_verified_at')->nullable();
+            $table->string('verification_code', 6);
+            $table->boolean('verified')->default(false);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
