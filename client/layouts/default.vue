@@ -1,11 +1,5 @@
 <template>
-  <div class="layout">
-    <navbar />
-
-    <div class="container mt-4">
-      <nuxt />
-    </div>
-  </div>
+    <nuxt></nuxt>
 </template>
 
 <script>

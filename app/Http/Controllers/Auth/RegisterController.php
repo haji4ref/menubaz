@@ -23,6 +23,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function register(Request $request)
+    {
+        dd("adasd");
+    }
+
     /**
      * The user has been registered.
      *

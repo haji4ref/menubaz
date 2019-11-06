@@ -34,7 +34,8 @@ module.exports = {
   },
 
   css: [
-    { src: '~assets/sass/app.scss', lang: 'scss' }
+    { src: '~assets/sass/app.scss', lang: 'scss' },
+    '~assets/sass/fontiran.css'
   ],
 
   plugins: [
@@ -44,16 +45,31 @@ module.exports = {
     '~plugins/axios',
     '~plugins/fontawesome',
     '~plugins/nuxt-client-init', // Comment this for SSR
-    { src: '~plugins/bootstrap', mode: 'client' }
+    // { src: '~plugins/bootstrap', mode: 'client' }
   ],
 
   modules: [
     '@nuxtjs/router'
   ],
 
-  build: {
-    extractCSS: true
+  buildModules: [
+    '@nuxtjs/vuetify'
+    // With options
+  ],
+  vuetify: {
+    rtl: true,
+    defaultAssets: {
+      icons: {
+        iconfont: 'fa'
+      }
+    }
   },
+
+  build:
+    {
+      extractCSS: true
+    }
+  ,
 
   hooks: {
     build: {
