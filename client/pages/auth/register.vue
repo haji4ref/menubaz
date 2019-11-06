@@ -54,7 +54,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
 
   export default {
     props: {
@@ -64,7 +63,7 @@
     methods: {
       submit () {
         if (this.form.password === this.form.password_confirmation) {
-          axios.post('register', this.form).then((res) => {
+          this.$axios.post('register', this.form).then((res) => {
             console.log(res)
           })
         }

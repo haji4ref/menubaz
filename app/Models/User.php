@@ -110,6 +110,6 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail {
 
     public function username()
     {
-        return 'phone';
+        return 'mobile';
     }
 }

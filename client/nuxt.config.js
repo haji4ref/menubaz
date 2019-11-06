@@ -30,7 +30,7 @@ module.exports = {
   loading: { color: '#007bff' },
 
   router: {
-    middleware: ['locale', 'check-auth']
+    middleware: ['locale', 'auth']
   },
 
   css: [
@@ -42,15 +42,33 @@ module.exports = {
     '~components/global',
     '~plugins/i18n',
     '~plugins/vform',
-    '~plugins/axios',
+    // '~plugins/axios',
     '~plugins/fontawesome',
     '~plugins/nuxt-client-init', // Comment this for SSR
     // { src: '~plugins/bootstrap', mode: 'client' }
   ],
 
   modules: [
-    '@nuxtjs/router'
+    '@nuxtjs/router',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
   ],
+
+  axios: {
+    baseURL: 'http://menubaz'
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/api/auth/login', method: 'post', propertyName: 'access_token' },
+          logout: { url: '/api/auth/logout', method: 'post' },
+          user: { url: '/api/auth/user', method: 'get', propertyName: 'user' }
+        },
+      }
+    }
+  },
 
   buildModules: [
     '@nuxtjs/vuetify'
