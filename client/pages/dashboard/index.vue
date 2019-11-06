@@ -9,6 +9,7 @@
     data () {
       return {}
     },
+    layout: 'dashboard',
     methods: {
       logout () {
         this.$auth.logout()
