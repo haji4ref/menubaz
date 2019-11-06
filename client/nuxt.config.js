@@ -55,7 +55,7 @@ module.exports = {
   ],
 
   axios: {
-    baseURL: 'http://menubaz'
+    baseURL: process.env.APP_URL
   },
 
   auth: {
