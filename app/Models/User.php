@@ -20,7 +20,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail {
      * @var array
      */
     protected $fillable = [
-        'name', 'mobile', 'password','verification_code'
+        'name', 'mobile', 'password', 'verification_code'
     ];
 
     /**
@@ -29,7 +29,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail {
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'verification_code'
     ];
 
     /**
@@ -111,5 +111,12 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail {
     public function username()
     {
         return 'mobile';
+    }
+
+    public function makeVerified($verify = true)
+    {
+        $this->verified = $verify;
+
+        $this->save();
     }
 }

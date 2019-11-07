@@ -65,6 +65,7 @@
     props: {
       source: String,
     },
+    middleware: 'verified',
     data: () => ({
       drawer: null,
     }),

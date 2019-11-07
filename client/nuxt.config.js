@@ -59,6 +59,9 @@ module.exports = {
   },
 
   auth: {
+    redirect: {
+      home: '/dashboard',
+    },
     strategies: {
       local: {
         endpoints: {

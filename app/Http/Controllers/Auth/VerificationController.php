@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
-class VerificationController extends Controller
-{
+class VerificationController extends Controller {
+
     /**
      * Create a new controller instance.
      *
@@ -18,43 +19,37 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
+
     }
 
     /**
      * Mark the user's email address as verified.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\User $user
+     * @param \Illuminate\Http\Request $request
+     * @param \App\User                $user
+     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function verify(Request $request, User $user)
+    public function verify(Request $request)
     {
-        if (! URL::hasValidSignature($request)) {
+        $user = auth()->user();
+        if($request->get('verification_code') === $user->verification_code) {
+            $user->makeVerified();
+
             return response()->json([
-                'status' => trans('verification.invalid'),
-            ], 400);
-        }
-
-        if ($user->hasVerifiedEmail()) {
+                'status' => trans('verification.verified'),
+            ]);
+        } else
             return response()->json([
-                'status' => trans('verification.already_verified'),
+                'status' => 'کد هویت درست نیست.'
             ], 400);
-        }
-
-        $user->markEmailAsVerified();
-
-        event(new Verified($user));
-
-        return response()->json([
-            'status' => trans('verification.verified'),
-        ]);
     }
 
     /**
      * Resend the email verification notification.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function resend(Request $request)
@@ -63,13 +58,13 @@ class VerificationController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if (is_null($user)) {
+        if(is_null($user)) {
             throw ValidationException::withMessages([
                 'email' => [trans('verification.user')],
             ]);
         }
 
-        if ($user->hasVerifiedEmail()) {
+        if($user->hasVerifiedEmail()) {
             throw ValidationException::withMessages([
                 'email' => [trans('verification.already_verified')],
             ]);
