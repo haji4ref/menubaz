@@ -1,7 +1,9 @@
 @import 'variables';
 //@import '~bootstrap/scss/bootstrap';
 //@import '~sweetalert2/src/sweetalert2';
-@import '@fortawesome/fontawesome-free/css/all.css';
+//@import '@fortawesome/fontawesome-free/css/all.css';
+@import '@mdi/font/css/materialdesignicons.css'; // Ensure you are using css-loader
+
 
 @import 'elements/card';
 @import 'elements/navbar';

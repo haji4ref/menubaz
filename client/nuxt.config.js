@@ -10,7 +10,7 @@ module.exports = {
   env: {
     apiUrl: process.env.API_URL || process.env.APP_URL + '/api',
     appName: process.env.APP_NAME || 'Laravel Nuxt',
-    appLocale: process.env.APP_LOCALE || 'en',
+    appLocale: process.env.APP_LOCALE || 'fa',
     githubAuth: !!process.env.GITHUB_CLIENT_ID
   },
 
@@ -78,12 +78,7 @@ module.exports = {
     // With options
   ],
   vuetify: {
-    rtl: true,
-    defaultAssets: {
-      icons: {
-        iconfont: 'fa'
-      }
-    }
+    optionsPath: './vuetify.options.js'
   },
 
   build:

@@ -185,6 +185,8 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
         Anetwork\Validation\PersianValidationServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
+
     ],
 
     /*

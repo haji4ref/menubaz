@@ -20,6 +20,9 @@ const routes = [
   // dashboard
   { path: '/dashboard', name: 'dashboard', component: page('dashboard/index.vue') },
 
+  //roles
+  { path: '/dashboard/roles', name: 'roles-index', component: page('dashboard/roles/index.vue') },
+
   { path: '/home', name: 'home', component: page('home.vue') },
   {
     path: '/settings',

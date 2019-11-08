@@ -8,15 +8,17 @@
             <v-list dense>
                 <v-list-item link>
                     <v-list-item-action>
-                        <v-icon>fa-home</v-icon>
+                        <v-icon>mdi-home</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
-                        <v-list-item-title>خانه</v-list-item-title>
+                        <v-list-item-title>
+                            <nuxt-link to="roles">نقش ها</nuxt-link>
+                        </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item link>
                     <v-list-item-action>
-                        <v-icon>fa-robot</v-icon>
+                        <v-icon>mdi-robot</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
                         <v-list-item-title>ساخت ربات</v-list-item-title>
@@ -45,7 +47,7 @@
                         align="center"
                         justify="center"
                 >
-                    <v-col class="text-center">
+                    <v-col>
                         <nuxt/>
                     </v-col>
                 </v-row>

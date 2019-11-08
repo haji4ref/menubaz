@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('auth/logout', 'AuthController@logout');
 
     Route::post('auth/verify', 'Auth\VerificationController@verify');
+
+    // roles
+    Route::get('roles', 'RoleController@index');
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
