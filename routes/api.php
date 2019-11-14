@@ -42,3 +42,7 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('oauth/{driver}', 'Auth\OAuthController@redirectToProvider');
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
 });
+
+Route::get('getme', 'TelegramController@getMe');
+Route::get('setwebhook', 'TelegramController@setWebhook');
+Route::post('/799294587:AAGUgMQgvdOQkKh25JHyQBCkhalM_CJUJQI/webhook', 'TelegramController@webhook');
