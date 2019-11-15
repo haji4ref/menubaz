@@ -22,6 +22,7 @@ const routes = [
 
   //roles
   { path: '/dashboard/roles', name: 'roles-index', component: page('dashboard/roles/index.vue') },
+  { path: '/dashboard/roles/create', name: 'roles-create', component: page('dashboard/roles/create.vue') },
 
   { path: '/home', name: 'home', component: page('home.vue') },
   {

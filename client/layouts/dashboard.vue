@@ -40,11 +40,11 @@
 
         <v-content>
             <v-container
-                    class="fill-height"
+                    class="fill-height align-start"
                     fluid
             >
                 <v-row
-                        align="center"
+
                         justify="center"
                 >
                     <v-col>
