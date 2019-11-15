@@ -55,7 +55,7 @@ module.exports = {
   ],
 
   axios: {
-    baseURL: process.env.APP_URL
+    baseURL: process.env.APP_URL + '/api'
   },
 
   auth: {
@@ -65,9 +65,9 @@ module.exports = {
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/api/auth/login', method: 'post', propertyName: 'access_token' },
-          logout: { url: '/api/auth/logout', method: 'post' },
-          user: { url: '/api/auth/user', method: 'get', propertyName: 'user' }
+          login: { url: '/auth/login', method: 'post', propertyName: 'access_token' },
+          logout: { url: '/auth/logout', method: 'post' },
+          user: { url: '/auth/user', method: 'get', propertyName: 'user' }
         },
       }
     }

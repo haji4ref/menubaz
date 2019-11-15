@@ -19,8 +19,9 @@ const routes = [
 
   // dashboard
   { path: '/dashboard', name: 'dashboard', component: page('dashboard/index.vue') },
+  { path: '/telegram', name: 'telegram', component: page('telegram.vue') },
 
-  //roles
+  // roles
   { path: '/dashboard/roles', name: 'roles-index', component: page('dashboard/roles/index.vue') },
   { path: '/dashboard/roles/create', name: 'roles-create', component: page('dashboard/roles/create.vue') },
 
