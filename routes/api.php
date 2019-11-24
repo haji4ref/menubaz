@@ -26,6 +26,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     // roles
     Route::get('roles', 'RoleController@index');
 
+    // bot
+    Route::post('bot/register', 'Bot\BotController@register');
+    Route::get('bot', 'Bot\BotController@index');
+    Route::get('bot/{id}', 'Bot\BotController@show');
+    Route::post('bot/{id}', 'Bot\BotController@edit');
+    Route::get('bot/reload/{token}', 'Bot\BotController@reload');
+
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
 });
@@ -45,4 +52,4 @@ Route::group(['middleware' => 'guest:api'], function () {
 
 Route::get('getme', 'TelegramController@getMe');
 Route::get('setwebhook', 'TelegramController@setWebhook');
-Route::post('/799294587:AAGUgMQgvdOQkKh25JHyQBCkhalM_CJUJQI/webhook', 'TelegramController@webhook');
+Route::post('/{token}/webhook', 'TelegramController@webhook');

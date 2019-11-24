@@ -12,7 +12,7 @@
                     </v-list-item-action>
                     <v-list-item-content>
                         <v-list-item-title>
-                            <nuxt-link to="roles">نقش ها</nuxt-link>
+                            <nuxt-link to="/dashboard/roles">نقش ها</nuxt-link>
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
@@ -21,7 +21,9 @@
                         <v-icon>mdi-robot</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
-                        <v-list-item-title>ساخت ربات</v-list-item-title>
+                        <v-list-item-title>
+                            <nuxt-link to="/dashboard/bots">ربات ها</nuxt-link>
+                        </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>

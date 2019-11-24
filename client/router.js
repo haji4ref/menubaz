@@ -25,6 +25,10 @@ const routes = [
   { path: '/dashboard/roles', name: 'roles-index', component: page('dashboard/roles/index.vue') },
   { path: '/dashboard/roles/create', name: 'roles-create', component: page('dashboard/roles/create.vue') },
 
+  // bots
+  { path: '/dashboard/bots', name: 'bots-index', component: page('dashboard/bots/index.vue') },
+  { path: '/dashboard/bots/manage/:id', name: 'bot-manage', component: page('dashboard/bots/manage.vue') },
+
   { path: '/home', name: 'home', component: page('home.vue') },
   {
     path: '/settings',

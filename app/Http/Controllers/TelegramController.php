@@ -2,42 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Bot;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
-class TelegramController extends Controller
-{
-    public function getMe()
-    {
-        return Telegram::getMe();
-    }
+/**
+ * @property \Telegram\Bot\Api telegram
+ */
+class TelegramController extends Controller {
 
-    public function setWebhook()
+    /**
+     * @param $token
+     *
+     */
+    public function webhook($token)
     {
-        $data = Telegram::setWebhook([
-            'url' => 'https://a4da66ab.ngrok.io/api/799294587:AAGUgMQgvdOQkKh25JHyQBCkhalM_CJUJQI/webhook'
-        ]);
 
-        return $data;
-    }
+        $bot = Bot::where('token', $token)->first();
 
-    public function webhook()
-    {
+        Telegram::setAccessToken($token);
+
         Telegram::commandsHandler(true);
 
-        switch (\request()->input('message.text'))
-        {
-
+        switch(\request()->input('message.text')) {
+            // ertebat ba ma
             case 'درباره ما':
                 Telegram::sendChatAction([
                     'chat_id' => request()->input('message.chat.id'),
-                    'action' => Actions::TYPING,
+                    'action'  => Actions::TYPING,
                 ]);
 
                 Telegram::sendMessage([
                     'chat_id' => request()->input('message.chat.id'),
-                    'text' => 'این ربات طراحی شده تا شما در این مکان به آهنگ دلخواه خود گوش کنید❤️',
+                    'text'    => $bot->contactUsMsg->msg,
                 ]);
 
                 break;
@@ -46,18 +43,16 @@ class TelegramController extends Controller
 
                 Telegram::sendMessage([
                     'chat_id' => request()->input('message.chat.id'),
-                    'text' => 'http://kayakweb.ir/storage/destination/12/ymIQi01909.jpg',
+                    'text'    => 'http://kayakweb.ir/storage/destination/12/ymIQi01909.jpg',
                 ]);
 
                 break;
 
             case 'لیست غذاها':
-
                 Telegram::sendMessage([
                     'chat_id' => request()->input('message.chat.id'),
-                    'text' => 'ccc',
+                    'text'    => 'ccc',
                 ]);
-
                 break;
         }
     }

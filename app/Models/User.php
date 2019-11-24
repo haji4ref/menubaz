@@ -122,4 +122,9 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail {
 
         $this->save();
     }
+
+    public function bots()
+    {
+        return $this->hasMany(Bot::class);
+    }
 }
