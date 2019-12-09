@@ -14,12 +14,12 @@ class CreateBotsTable extends Migration {
     public function up()
     {
         Schema::create('bots', function (Blueprint $table) {
-            $table->unsignedInteger('id');
+            $table->unsignedInteger('id')->primary();
             $table->text('token');
             $table->string('name')->nullable();
             $table->string('first_name')->nullable();
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')
                   ->references('id')
