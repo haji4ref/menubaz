@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Menu\Menu;
 use App\Notifications\VerifyEmail;
 use App\Notifications\ResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -126,5 +127,10 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail {
     public function bots()
     {
         return $this->hasMany(Bot::class);
+    }
+
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
     }
 }

@@ -44,6 +44,7 @@ module.exports = {
     '~plugins/vform',
     // '~plugins/axios',
     '~plugins/fontawesome',
+    '~plugins/image-input',
     '~plugins/nuxt-client-init', // Comment this for SSR
     // { src: '~plugins/bootstrap', mode: 'client' }
   ],

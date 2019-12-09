@@ -8,21 +8,32 @@
             <v-list dense>
                 <v-list-item link>
                     <v-list-item-action>
-                        <v-icon>mdi-home</v-icon>
+                        <v-icon color="success">mdi-home</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
                         <v-list-item-title>
-                            <nuxt-link to="/dashboard/roles">نقش ها</nuxt-link>
+                            <nuxt-link class="text-decorate-none" to="/dashboard/roles">نقش ها</nuxt-link>
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item link>
                     <v-list-item-action>
-                        <v-icon>mdi-robot</v-icon>
+                        <v-icon color="primary">mdi-robot</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
                         <v-list-item-title>
-                            <nuxt-link to="/dashboard/bots">ربات ها</nuxt-link>
+                            <nuxt-link class="text-decorate-none" to="/dashboard/bots">ربات ها</nuxt-link>
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item link>
+                    <v-list-item-action>
+                        <v-icon color="error">mdi-file</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            <nuxt-link class="text-decorate-none" to="/dashboard/menus">مدیریت منو</nuxt-link>
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>

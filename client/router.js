@@ -25,6 +25,12 @@ const routes = [
   { path: '/dashboard/roles', name: 'roles-index', component: page('dashboard/roles/index.vue') },
   { path: '/dashboard/roles/create', name: 'roles-create', component: page('dashboard/roles/create.vue') },
 
+  // menus
+  { path: '/dashboard/menus', name: 'menus-index', component: page('dashboard/menus/index.vue') },
+
+  // menu_categories
+  { path: '/dashboard/menu_categories/:id/foods', name: 'foods-index', component: page('dashboard/menu_categories/foods/index.vue') },
+
   // bots
   { path: '/dashboard/bots', name: 'bots-index', component: page('dashboard/bots/index.vue') },
   { path: '/dashboard/bots/manage/:id', name: 'bot-manage', component: page('dashboard/bots/manage.vue') },

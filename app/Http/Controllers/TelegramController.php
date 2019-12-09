@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bot;
+use Illuminate\Support\Facades\Log;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
@@ -17,7 +18,6 @@ class TelegramController extends Controller {
      */
     public function webhook($token)
     {
-
         $bot = Bot::where('token', $token)->first();
 
         Telegram::setAccessToken($token);
@@ -49,11 +49,27 @@ class TelegramController extends Controller {
                 break;
 
             case 'لیست غذاها':
-                Telegram::sendMessage([
+                Telegram::sendPhoto([
                     'chat_id' => request()->input('message.chat.id'),
-                    'text'    => 'ccc',
+                    'photo'   => env('APP_URL') . $bot->user->menus->first()->categories->first()->items->first()->gallery->publicUrl,
+                    'caption' => $bot->user->menus->first()->categories->first()->items->first()->bolded_description
+                    //'reply_markup' => $this->makeCategories($bot)
                 ]);
                 break;
         }
+    }
+
+    private function makeCategories($bot)
+    {
+        $categories = $bot->user->menus->first()->categories->pluck('name')->toArray();
+
+        $reply_markup = Telegram::replyKeyboardMarkup([
+            'keyboard'          => [$categories],
+            'resize_keyboard'   => false,
+            'one_time_keyboard' => true
+        ]);
+
+        return $reply_markup;
+
     }
 }

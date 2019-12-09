@@ -1073,6 +1073,11 @@
     mustache "^2.3.0"
     stack-trace "0.0.10"
 
+"@seregpie/claw@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@seregpie/claw/-/claw-3.0.0.tgz#a0746d0ec0aae5524cb277a8523eac386cac0344"
+  integrity sha512-FljpNMtIbq0BPYU3f8x6xo28Q5RKGdMpMfGUkPEuZJnqiyJUUeaQ/InPdLLZDBXk2BDT/9h3spck4UcsgQndPA==
+
 "@types/json-schema@^7.0.3":
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.3.tgz#bdfd69d61e464dcc81b25159c270d75a73c1a636"
@@ -1631,6 +1636,14 @@ axios-retry@^3.1.2:
   integrity sha512-+X0mtJ3S0mmia1kTVi1eA3DAC+oWnT2A29g3CpkzcBPMT6vJm+hn/WiV9wPt/KXLHVmg5zev9mWqkPx7bHMovg==
   dependencies:
     is-retry-allowed "^1.1.0"
+
+axios@^0.18.0:
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.1.tgz#ff3f0de2e7b5d180e757ad98000f1081b87bcea3"
+  integrity sha512-0BfJq4NSfQXd+SkFdrvFbG7addhYSBA2mQwISr46pD6E5iqkWg02RAs8vyTT/j0RTnoYmeXauBuSv1qKwR179g==
+  dependencies:
+    follow-redirects "1.5.10"
+    is-buffer "^2.0.2"
 
 axios@^0.19.0:
   version "0.19.0"
@@ -2999,6 +3012,13 @@ dom-serializer@0:
   dependencies:
     domelementtype "^2.0.1"
     entities "^2.0.0"
+
+dom7@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/dom7/-/dom7-2.1.3.tgz#a736f9c3bfbc4ca039a81cd095f97d1d7f3de19c"
+  integrity sha512-QTxHHDox+M6ZFz1zHPAHZKI3JOHY5iY4i9BK2uctlggxKQwRhO3q3HHFq1BKsT25Bm/ySSj70K6Wk/G4bs9rMQ==
+  dependencies:
+    ssr-window "^1.0.1"
 
 domain-browser@^1.1.1:
   version "1.2.0"
@@ -6143,7 +6163,7 @@ pkg-dir@^4.1.0:
   dependencies:
     find-up "^4.0.0"
 
-popper.js@^1.15.0:
+popper.js@^1.14.3, popper.js@^1.15.0:
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.0.tgz#2e1816bcbbaa518ea6c2e15a466f4cb9c6e2fbb3"
   integrity sha512-+G+EkOPoE5S/zChTpmBSSDYmhXJ5PsW8eMhH8cP/CQHMFPBG/kC9Y5IIw6qNYgdJ+/COf0ddY2li28iHaZRSjw==
@@ -7769,6 +7789,11 @@ sshpk@^1.7.0:
     safer-buffer "^2.0.2"
     tweetnacl "~0.14.0"
 
+ssr-window@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ssr-window/-/ssr-window-1.0.1.tgz#30752a6a4666e7767f0b7e6aa6fc2fdbd0d9b369"
+  integrity sha512-dgFqB+f00LJTEgb6UXhx0h+SrG50LJvti2yMKMqAgzfUmUXZrLSv2fjULF7AWGwK25EXu8+smLR3jYsJQChPsg==
+
 ssri@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/ssri/-/ssri-6.0.1.tgz#2a3c41b28dd45b62b63676ecb74001265ae9edd8"
@@ -8050,6 +8075,14 @@ sweetalert2@^8.14.0:
   version "8.18.6"
   resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.18.6.tgz#9df053369cb2b4ae0b955280505bf0cad0f8c4fe"
   integrity sha512-6Jio6FH3p5hm+VHYN8mUyGhGozVo+r+eJtkUC/+bvSpXss84hcMRXNqKQs+J1+LWPy2DT7ozdyVXaVY6sMnm+w==
+
+swiper@^4.0.7:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-4.5.1.tgz#ed43998e780ceb478610079c8d23fd425eca636f"
+  integrity sha512-se6I7PWWu950NAMXXT+ENtF/6SVb8mPyO+bTfNxbQBILSeLqsYp3Ndap+YOA0EczOIUlea274PKejT6gKZDseA==
+  dependencies:
+    dom7 "^2.1.3"
+    ssr-window "^1.0.1"
 
 table@^5.2.3:
   version "5.4.6"
@@ -8545,6 +8578,14 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.0.tgz#bd76d6a23323e2ca8ffa12028dc04559c75f9019"
   integrity sha512-iq+S7vZJE60yejDYM0ek6zg308+UZsdtPExWP9VZoCFCz1zkJoXFnAX7aZfd/ZwrkidzdUZL0C/ryW+JwAiIGw==
 
+vue-awesome-swiper@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/vue-awesome-swiper/-/vue-awesome-swiper-3.1.3.tgz#05500b501ffb3fec9bf7eb9985bcf4ae8360ed9e"
+  integrity sha512-E7suzkyApO8vNZbgdEnjSmnpsmQZyRvSVXJ7sey3XYwKPOkLhH3+GnHroBw+5PZIQXvWBwdCeQsPG1xQ1r1Rhg==
+  dependencies:
+    object-assign "^4.1.1"
+    swiper "^4.0.7"
+
 vue-client-only@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-2.0.0.tgz#ddad8d675ee02c761a14229f0e440e219de1da1c"
@@ -8572,6 +8613,20 @@ vue-i18n@^8.12.0:
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.15.0.tgz#9b11ef8e7a124f67cdf788c8c90a81f3606240ed"
   integrity sha512-juJ/avAP39bOMycC+qQDLJ8U9z9LtLF/9PsRoJLBSfsYZo9bqYntyyX5QPicwlb1emJKjgxhZ3YofHiQcXBu0Q==
 
+vue-image-lightbox-carousel@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/vue-image-lightbox-carousel/-/vue-image-lightbox-carousel-1.0.7.tgz#f628b149f28b72ab282d00b21811521f138bcfa9"
+  integrity sha512-a3y2Nd5EupVseJaCb8xQu1IbE4JEjOKjb5qmHO98En9MRjWDOOKspE3SUyUir1/HpyYY+6Wg3VgrjURsDFZM2A==
+  dependencies:
+    vue "^2.5.11"
+    vue-awesome-swiper "^3.1.3"
+    vue-lazyload "^1.2.6"
+
+vue-lazyload@^1.2.6:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/vue-lazyload/-/vue-lazyload-1.3.3.tgz#4df50a271bde9b74c3caf7a228d6e0af50d5682f"
+  integrity sha512-uHnq0FTEeNmqnbBC2aRKlmtd9LofMZ6Q3mWvgfLa+i9vhxU8fDK+nGs9c1iVT85axSua/AUnMttIq3xPaU9G3A==
+
 vue-loader@^15.7.1:
   version "15.7.1"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.7.1.tgz#6ccacd4122aa80f69baaac08ff295a62e3aefcfd"
@@ -8594,6 +8649,13 @@ vue-no-ssr@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
   integrity sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
+
+vue-popperjs@^1.5.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/vue-popperjs/-/vue-popperjs-1.6.3.tgz#69b00509024468be05064ce7e5aca0d39c25a809"
+  integrity sha512-D0k/PxsDoCQxYykTh26t//6Uw5hk5Yl3BDlZj2nHqB2AyD0NjKCceLbuBRlPh+O59CXYJLSW2p5QveepLwkUvg==
+  dependencies:
+    popper.js "^1.14.3"
 
 vue-router@~3.0.7:
   version "3.0.7"
@@ -8635,10 +8697,35 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^2.6.10:
+vue-upload-multiple-image@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/vue-upload-multiple-image/-/vue-upload-multiple-image-1.1.4.tgz#c0178e861868a9129750317edb3f614f3cb84e7d"
+  integrity sha512-oJ9usjiNN24t3L1rHX+OAcPnBX8XcNnLv9tqYLfRk6LidBXcO38Bhhlq6WVM/c8zhV1G77TZ2P8f6D4CsH07zw==
+  dependencies:
+    axios "^0.18.0"
+    lodash "^4.17.11"
+    vue "^2.5.11"
+    vue-image-lightbox-carousel "^1.0.7"
+    vue-popperjs "^1.5.3"
+
+vue@^2.5.11, vue@^2.6.10:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
+
+vueclaw@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/vueclaw/-/vueclaw-1.1.0.tgz#5a80a8c778c4a0fc2f4149059dbd43be09e4b676"
+  integrity sha512-rHPgAud0JBXaNWMwf2hqrCoCR+tjnmWlVDkBayxhTCwSXOYIQnxNtwOSbrVkhtnN4LfTZoqIX8mkuk9tFyr7/Q==
+  dependencies:
+    "@seregpie/claw" "^3.0.0"
+
+vuetify-image-input@^19.1.0:
+  version "19.1.0"
+  resolved "https://registry.yarnpkg.com/vuetify-image-input/-/vuetify-image-input-19.1.0.tgz#1656fefaf874f7e04605cf28bc6d4a5e2ef371d8"
+  integrity sha512-96i21jPgIMVMA7lDkUIOePt0M4hReYPxVr9iT/nQJkil5YIJWxmoIhUSWjc867a81wwJbWBSLPq4dmvO8ftypg==
+  dependencies:
+    vueclaw "^1.1.0"
 
 vuetify-loader@^1.3.0:
   version "1.3.0"
