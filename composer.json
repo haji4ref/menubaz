@@ -9,7 +9,7 @@
         "anetwork/validation": "^2.2",
         "barryvdh/laravel-cors": "^0.11.4",
         "fideloper/proxy": "^4.0",
-        "irazasyed/telegram-bot-sdk": "^2.0",
+        "irazasyed/telegram-bot-sdk": "^3.0",
         "laravel/framework": "5.8.*",
         "laravel/socialite": "^4.0",
         "laravel/tinker": "~1.0",
