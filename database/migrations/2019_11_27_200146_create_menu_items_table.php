@@ -20,7 +20,7 @@ class CreateMenuItemsTable extends Migration {
             $table->string('bolded_description')->nullable();
             $table->text('description')->nullable();
 
-            $table->unsignedInteger('menu_category_id');
+            $table->unsignedBigInteger('menu_category_id');
 
             $table->foreign('menu_category_id')
                   ->references('id')

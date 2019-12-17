@@ -17,7 +17,7 @@ class CreateMenuCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
 
-            $table->unsignedInteger('menu_id');
+            $table->unsignedBigInteger('menu_id');
 
             $table->foreign('menu_id')
                   ->references('id')

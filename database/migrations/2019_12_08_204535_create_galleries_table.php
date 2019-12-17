@@ -18,7 +18,7 @@ class CreateGalleriesTable extends Migration
             $table->string('name')->nullable();
             $table->string('url');
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')
                   ->references('id')

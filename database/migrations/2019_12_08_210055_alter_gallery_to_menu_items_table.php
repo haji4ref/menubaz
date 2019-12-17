@@ -14,7 +14,7 @@ class AlterGalleryToMenuItemsTable extends Migration {
     public function up()
     {
         Schema::table('menu_items', function (Blueprint $table) {
-            $table->unsignedInteger('gallery_id')->nullable();
+            $table->unsignedBigInteger('gallery_id')->nullable();
 
             $table->foreign('gallery_id')
                   ->references('id')
