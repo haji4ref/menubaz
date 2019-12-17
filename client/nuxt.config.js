@@ -35,7 +35,7 @@ module.exports = {
 
   css: [
     { src: '~assets/sass/app.scss', lang: 'scss' },
-    '~assets/sass/fontiran.css'
+    // '~assets/sass/fontiran.css'
   ],
 
   plugins: [

@@ -14,12 +14,12 @@ class StartCommand extends Command
     /**
      * {@inheritdoc}
      */
-    public function handle($arguments)
+    public function handle()
     {
         // TODO: Implement handle() method.
 
         $keyboard = [
-            ['ارسال عکس','درباره ما', 'لیست غذاها'],
+            ['ارسال عکس','درباره ما', 'مشاهده منو'],
             ['/help']
         ];
 

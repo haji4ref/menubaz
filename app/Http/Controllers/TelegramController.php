@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\Telegram\TextHandlers\TextMenuHandler;
 use App\Models\Bot;
 use Illuminate\Support\Facades\Log;
+use ReflectionClass;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
@@ -11,6 +13,10 @@ use Telegram\Bot\Laravel\Facades\Telegram;
  * @property \Telegram\Bot\Api telegram
  */
 class TelegramController extends Controller {
+
+    private $expectedTexts = [
+        'مشاهده منو' => TextMenuHandler::class
+    ];
 
     /**
      * @param $token
@@ -23,6 +29,14 @@ class TelegramController extends Controller {
         Telegram::setAccessToken($token);
 
         Telegram::commandsHandler(true);
+
+        if(array_key_exists(request()->input('message.text'), $this->expectedTexts)) {
+            $handler = (new ReflectionClass($this->expectedTexts[request()->input('message.text')]))->newInstance();
+
+            $handler->handle($bot);
+        }
+
+        return;
 
         switch(\request()->input('message.text')) {
             // ertebat ba ma
