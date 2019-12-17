@@ -10,14 +10,12 @@
 @import 'elements/buttons';
 @import 'elements/transitions';
 
-*{
-    font-family: "IRANSansWeb Light";
+@import "./fontiran.css";
+* {
+    font-family: "IRANSans";
 }
 
 .text-decorate-none{
     text-decoration: none;
 }
 
-.font-iran{
-    font-family: "IRANSansWeb Light"!important;
-}

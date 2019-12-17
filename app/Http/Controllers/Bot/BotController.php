@@ -70,6 +70,7 @@ class BotController extends Controller {
 
             return $data;
         } catch(TelegramSDKException $e) {
+
         }
     }
 }
