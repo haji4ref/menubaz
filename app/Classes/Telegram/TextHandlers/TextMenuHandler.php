@@ -15,18 +15,25 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TextMenuHandler implements ITextHandler {
 
+    private $buttonsPerRow = 4;
+
     public function handle(Bot $bot)
     {
         $menu_categories = $bot->user->menus()->first()->categories;
+
         $keyboard = Keyboard::make()
-                            ->inline()
-                            ->row(
-                                Keyboard::inlineButton(['text' => $menu_categories[0]->name, 'callback_data' => $menu_categories[0]->id+1])
-                            );
+                            ->inline();
+        for($i = 0; $i <= intval(count($menu_categories) / $this->buttonsPerRow); $i ++) {
+            $buttons = $menu_categories->slice($i * $this->buttonsPerRow, $this->buttonsPerRow)
+                                       ->map(function ($value) {
+                                           return Keyboard::inlineButton(['text' => $value->name, 'callback_data' => $value->id]);
+                                       })->toArray();
+            $keyboard->row(...$buttons);
+        }
 
         $response = Telegram::sendMessage([
             'chat_id'      => request()->input('message.chat.id'),
-            'text'         => 'Hello World',
+            'text'         => 'منو رستوران فلان',
             'reply_markup' => $keyboard
         ]);
     }
