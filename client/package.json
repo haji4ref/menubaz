@@ -1,10 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "dev": "nuxt -c client/nuxt.config.js",
-    "build": "nuxt build -c client/nuxt.config.js",
-    "start": "nuxt start -c client/nuxt.config.js",
-    "lint": "eslint --fix --ext .js,.vue client/"
+    "dev": "nuxt -c nuxt.config.js",
+    "build": "nuxt build -c nuxt.config.js",
+    "start": "nuxt start -c nuxt.config.js",
+    "lint": "eslint --fix --ext .js,.vue ./"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",

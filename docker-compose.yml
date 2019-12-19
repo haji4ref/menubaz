@@ -1,0 +1,65 @@
+version: '3'
+
+######### Services ###################################
+
+services:
+  # Server container
+  nginx:
+    build:
+      context: docker/dev/nginx
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/var/www
+      - ./docker/dev/nginx/logs:/var/log/nginx
+    ports:
+      # Nuxt port
+      - 8080:80
+      # Laravel port
+      - 8081:81
+    links:
+      - node
+      - php
+
+  # PHP FastCGI Process Manager container
+  php:
+    build:
+      context: docker/dev/php
+      dockerfile: Dockerfile
+    volumes:
+      - ./api:/var/www/api
+    environment:
+      # If you down want to use xDebug, set remote_enable=0
+      XDEBUG_CONFIG: "remote_enable=1"
+      PHP_IDE_CONFIG: "serverName=Docker"
+    links:
+      - mysql
+
+  # Node container
+  node:
+    build:
+      context: docker/dev/node
+      dockerfile: Dockerfile
+    volumes:
+      - ./client:/var/www/client
+
+  # PostgreSQL database container
+  mysql:
+    image: mysql:5.7
+    volumes:
+      # Database volume
+      - "/var/db/mysql:/var/lib/mysql"
+      # Temp volume to allow using dumps
+      - ./docker/dev/mysql/dumps/:/tmp/
+    environment:
+      - "MYSQL_DATABASE=menubaz"
+      - "MYSQL_USER=menubaz"
+      - "MYSQL_PASSWORD=123456"
+      - "MYSQL_ROOT_PASSWORD=P@$$w0rd"
+
+######### Volumes ###################################
+
+volumes:
+  database:
+    driver: local
+  redis:
+    driver: local

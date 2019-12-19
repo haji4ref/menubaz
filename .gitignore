@@ -1,9 +1,8 @@
-/node_modules
+client/node_modules
 /public/hot
 /public/storage
 /storage/*.key
-/vendor
-.env
+api/vendor
 .idea
 .env.backup
 .phpunit.result.cache
@@ -15,3 +14,5 @@ yarn-error.log
 /dist
 /public/_nuxt
 *.code-workspace
+client/.env
+api/.env
