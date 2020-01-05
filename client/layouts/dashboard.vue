@@ -1,10 +1,6 @@
 <template>
     <v-app id="inspire">
-        <v-navigation-drawer
-                v-model="drawer"
-                app
-                right
-        >
+        <v-navigation-drawer v-model="drawer" app right>
             <v-list dense>
                 <v-list-item link>
                     <v-list-item-action>
@@ -40,11 +36,7 @@
             </v-list>
         </v-navigation-drawer>
 
-        <v-app-bar
-                app
-                color="#0088cc"
-                dark
-        >
+        <v-app-bar app color="#0088cc" dark>
             <v-app-bar-nav-icon @click.stop="drawer = !drawer">
                 <v-icon>fa-bars</v-icon>
             </v-app-bar-nav-icon>
@@ -52,37 +44,28 @@
         </v-app-bar>
 
         <v-content>
-            <v-container
-                    class="fill-height align-start"
-                    fluid
-            >
-                <v-row
-
-                        justify="center"
-                >
+            <v-container class="fill-height align-start" fluid>
+                <v-row justify="center">
                     <v-col>
-                        <nuxt/>
+                        <nuxt />
                     </v-col>
                 </v-row>
             </v-container>
         </v-content>
-        <v-footer
-                color="#0088cc"
-                app
-        >
-            <span class="white--text ">توسعه داده شده با امید و 💖</span>
+        <v-footer color="#0088cc" app>
+            <span class="white--text">توسعه داده شده با امید و 💖</span>
         </v-footer>
     </v-app>
 </template>
 
 <script>
-  export default {
+export default {
     props: {
-      source: String,
+        source: String
     },
-    middleware: 'verified',
+    middleware: "verified",
     data: () => ({
-      drawer: null,
-    }),
-  }
+        drawer: null
+    })
+};
 </script>

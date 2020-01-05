@@ -12,7 +12,8 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 /**
  * @property \Telegram\Bot\Api telegram
  */
-class TelegramController extends Controller {
+class TelegramController extends Controller
+{
 
     private $expectedTexts = [
         'مشاهده منو' => TextMenuHandler::class
@@ -27,10 +28,10 @@ class TelegramController extends Controller {
         $bot = Bot::where('token', $token)->first();
 
         Telegram::setAccessToken($token);
-
+        
         Telegram::commandsHandler(true);
 
-        if(array_key_exists(request()->input('message.text'), $this->expectedTexts)) {
+        if (array_key_exists(request()->input('message.text'), $this->expectedTexts)) {
             $handler = (new ReflectionClass($this->expectedTexts[request()->input('message.text')]))->newInstance();
 
             $handler->handle($bot);
@@ -38,8 +39,8 @@ class TelegramController extends Controller {
 
         return;
 
-        switch(\request()->input('message.text')) {
-            // ertebat ba ma
+        switch (\request()->input('message.text')) {
+                // ertebat ba ma
             case 'درباره ما':
                 Telegram::sendChatAction([
                     'chat_id' => request()->input('message.chat.id'),
@@ -84,6 +85,5 @@ class TelegramController extends Controller {
         ]);
 
         return $reply_markup;
-
     }
 }
