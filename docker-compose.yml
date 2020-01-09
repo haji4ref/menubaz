@@ -47,7 +47,8 @@ services:
     image: mysql:5.7
     volumes:
       # Database volume
-      - "/var/db/mysql:/var/lib/mysql"
+#      - "/Users/naeemsohrabi/Documents/Project/menubaz/mysqlDB:/var/lib/mysql"   #naeem's mac
+      - "/var/db/mysql:/var/lib/mysql"                                           #ubuntu
       # Temp volume to allow using dumps
       - ./docker/dev/mysql/dumps/:/tmp/
     environment:
@@ -55,6 +56,25 @@ services:
       - "MYSQL_USER=menubaz"
       - "MYSQL_PASSWORD=123456"
       - "MYSQL_ROOT_PASSWORD=P@$$w0rd"
+
+  # PhpMyadmin container
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+#      PMA_PORT: 3306
+      PMA_HOST: mysql
+#      PMA_USER: root
+#      PMA_PASSWORD: toor
+    ports:
+      - "8004:80"
+    restart: always
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    volumes:
+      - /sessions
+
 
 ######### Volumes ###################################
 
