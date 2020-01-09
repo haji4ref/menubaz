@@ -17,4 +17,9 @@ class Bot extends Model {
     {
         return $this->hasOne(ContactUsMessage::class);
     }
+
+    public function members()
+    {
+        return $this->belongsToMany(Member::class);
+    }
 }

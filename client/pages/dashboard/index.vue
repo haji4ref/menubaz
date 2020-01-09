@@ -5,22 +5,19 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {}
+export default {
+    data() {
+        return {};
     },
-    layout: 'dashboard',
+    layout: "dashboard",
     methods: {
-      logout () {
-        this.$auth.logout()
-      }
+        logout() {
+            this.$auth.logout();
+        }
     },
-    created () {
-
-    }
-  }
+    created() {}
+};
 </script>
 
 <style>
-
 </style>

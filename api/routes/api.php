@@ -33,13 +33,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('bot/{id}', 'Bot\BotController@edit');
     Route::get('bot/reload/{token}', 'Bot\BotController@reload');
 
-    Route::get('menu/{id}','Menu\MenuController@show');
-    Route::get('menu','Menu\MenuController@showUserMenu');
-    Route::get('menu/{id}/categories','Menu\MenuController@menuCategories');
-    Route::post('menu/{id}/categories','Menu\MenuController@createMenuCategory');
+    Route::get('menu/{id}', 'Menu\MenuController@show');
+    Route::get('menu', 'Menu\MenuController@showUserMenu');
+    Route::get('menu/{id}/categories', 'Menu\MenuController@menuCategories');
+    Route::post('menu/{id}/categories', 'Menu\MenuController@createMenuCategory');
 
-    Route::get('menu_categories/{id}/items','Menu\MenuCategoryController@items');
-    Route::post('menu_categories/{id}/item','Menu\MenuCategoryController@createItem');
+    Route::get('menu_categories/{id}/items', 'Menu\MenuCategoryController@items');
+    Route::post('menu_categories/{id}/item', 'Menu\MenuItemController@createItem');
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');

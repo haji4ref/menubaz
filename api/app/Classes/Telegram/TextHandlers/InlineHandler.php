@@ -10,7 +10,7 @@ namespace App\Classes\Telegram\TextHandlers;
 
 use App\Models\Bot;
 
-interface ITextHandler
+interface InlineHandler
 {
-    public function handle(Bot $bot);
+    public function handle(Bot $bot, $values);
 }

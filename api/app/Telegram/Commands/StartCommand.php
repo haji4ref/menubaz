@@ -21,7 +21,7 @@ class StartCommand extends Command {
             'resize_keyboard'   => true,
             'one_time_keyboard' => true
         ])->row(
-            Keyboard::button(['text' => 'مشاهده منو']),
+            Keyboard::button(['text' => 'مشاهده منو', 'data' => 'aref']),
             Keyboard::button(['text' => 'درباره ما']),
             Keyboard::button(['text' => 'ارسال عکس'])
         );
@@ -33,4 +33,5 @@ class StartCommand extends Command {
         ]);
 
     }
+
 }
