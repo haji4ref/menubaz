@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Classes\Telegram\TextHandlers\MenuItemHandler;
-use App\Classes\Telegram\TextHandlers\MenuItemsHandler;
+use App\Classes\Telegram\InlineHandlers\MenuItemHandler;
+use App\Classes\Telegram\InlineHandlers\MenuItemsHandler;
+use App\Classes\Telegram\InlineHandlers\CommentMenuItemHandler;
+use App\Classes\Telegram\StateBasedHandlers\StateBasedHandler;
 use App\Classes\Telegram\TextHandlers\TextMenuHandler;
 use App\Models\Bot;
 use App\Models\Member;
 use ReflectionClass;
-use Telegram\Bot\Actions;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 /**
@@ -22,7 +23,8 @@ class TelegramController extends Controller {
 
     private $inlines = [
         'menu_category' => MenuItemsHandler::class,
-        'menu_item'     => MenuItemHandler::class
+        'menu_item'     => MenuItemHandler::class,
+        'comment_item'  => CommentMenuItemHandler::class
     ];
 
     private function hasData($fields)
@@ -40,7 +42,12 @@ class TelegramController extends Controller {
         return array_key_exists($field, $this->expectedTexts);
     }
 
-    private function resloveClass($class)
+    private function isReplied($fields)
+    {
+        return array_key_exists('reply_to_message', $fields['message']);
+    }
+
+    private function resolveClass($class)
     {
         return (new ReflectionClass($class))->newInstance();
     }
@@ -91,53 +98,26 @@ class TelegramController extends Controller {
         } else if($data = $this->hasData($fields)) {
             parse_str($data, $params);
 
-            $object = $this->resloveClass($this->inlines[$params['type']]);
+            $object = $this->resolveClass($this->inlines[$params['type']]);
 
             return $object->method($bot, $memberQuery, $params['values']);
 
         } else if(($text = $this->hasText($fields)) && $this->isInExpected($text)) {
 
-            $handler = $this->resloveClass($this->expectedTexts[$text]);
+            $handler = $this->resolveClass($this->expectedTexts[$text]);
 
             $handler->method($bot, $memberQuery);
 
+        } else if(($text = $this->hasText($fields)) && $this->isReplied($fields)) {
+
+            $handler = new StateBasedHandler();
+
+            $handler->method($bot, $memberQuery, [
+                'text' => $text
+            ]);
         }
 
         return request()->all();
-
-        switch(\request()->input('message.text')) {
-            // ertebat ba ma
-            case 'درباره ما':
-                Telegram::sendChatAction([
-                    'chat_id' => request()->input('message.chat.id'),
-                    'action'  => Actions::TYPING
-                ]);
-
-                Telegram::sendMessage([
-                    'chat_id' => request()->input('message.chat.id'),
-                    'text'    => $bot->contactUsMsg->msg
-                ]);
-
-                break;
-
-            case 'ارسال عکس':
-
-                Telegram::sendMessage([
-                    'chat_id' => request()->input('message.chat.id'),
-                    'text'    => 'http://kayakweb.ir/storage/destination/12/ymIQi01909.jpg'
-                ]);
-
-                break;
-
-            case 'لیست غذاها':
-                Telegram::sendPhoto([
-                    'chat_id' => request()->input('message.chat.id'),
-                    'photo'   => env('APP_URL') . $bot->user->menus->first()->categories->first()->items->first()->gallery->publicUrl,
-                    'caption' => $bot->user->menus->first()->categories->first()->items->first()->bolded_description
-                    //'reply_markup' => $this->makeCategories($bot)
-                ]);
-                break;
-        }
     }
 
     private function makeCategories($bot)
@@ -190,4 +170,5 @@ class TelegramController extends Controller {
             'user_name'  => $chat['username']
         ]);
     }
+
 }

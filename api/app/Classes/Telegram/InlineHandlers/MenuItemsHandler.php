@@ -7,7 +7,7 @@
  * Time: 11:16 PM
  */
 
-namespace App\Classes\Telegram\TextHandlers;
+namespace App\Classes\Telegram\InlineHandlers;
 
 use App\Http\Controllers\Menu\MenuCategoryController;
 use App\Models\Bot;

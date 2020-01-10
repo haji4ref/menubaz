@@ -12,8 +12,16 @@ use App\Models\Bot;
 
 trait TelegramTemplateMethod {
 
+    protected $bot = null;
+
+    protected $memberQuery = null;
+
+    protected $values = null;
+
     public final function method(Bot $bot, $memberQuery, $values = null)
     {
+        $this->memberQuery = $memberQuery;
+
         $this->handle($bot, $values);
         $this->log($memberQuery);
     }

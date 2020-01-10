@@ -12,11 +12,18 @@ class TelegramString {
 
     private $string = '';
 
-    public function append($s, $nextLineNumbers = 2)
+    private $nextLineNumbers = 2;
+
+    public function __construct($nextLineNumbers = 2)
+    {
+        $this->nextLineNumbers = $nextLineNumbers;
+    }
+
+    public function append($s)
     {
         $this->string .= $s;
 
-        for($i = 0; $i < $nextLineNumbers; $i ++)
+        for($i = 0; $i < $this->nextLineNumbers; $i ++)
             $this->string .= PHP_EOL;
 
         return $this;
