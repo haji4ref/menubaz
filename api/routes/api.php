@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
 
+    Route::post('comment/{id}/seen', 'CommentController@seen');
+
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

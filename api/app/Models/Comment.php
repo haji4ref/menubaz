@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model {
 
-    protected $fillable = ['body'];
+    protected $fillable = ['body', 'seen'];
+
+    protected $casts = [
+        'seen' => 'boolean'
+    ];
+
     /**
      * Get the owning commentable model.
      */

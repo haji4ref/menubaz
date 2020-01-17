@@ -12,7 +12,7 @@ class MenuCategoryController extends Controller {
 
     public function items($id)
     {
-        return MenuCategory::find($id)->items;
+        return MenuCategory::find($id)->items()->with('comments')->get();
     }
 
     public function createItem($id, CreateMenuItemRequest $request)

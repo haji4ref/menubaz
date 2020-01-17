@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
     <div>
         <v-progress-circular
                 v-if="loading"
@@ -51,31 +51,62 @@
                     class="elevation-1"
             >
                 <template v-slot:item.action="{ item }">
-                    <v-icon
-                            small
-                            color="primary"
-                            class="mr-2"
-                            @click="goToFoods(item)"
-                    >
-                        mdi-food
-                    </v-icon>
+                    <div class="d-flex">
+                        <v-btn outlined color="blue" small>
+                            ویرایش
+                        </v-btn>
+
+
+                        <v-badge
+                                class="mx-3"
+                                color="red"
+                                overlap
+                                right
+                        >
+                            <template v-slot:badge>
+                                <span v-if="hasUnSeen(item)">
+                                    {{unSeenLength(item)}}
+                                </span>
+                            </template>
+                            <v-btn outlined color="orange" small @click="showDialog(item)">
+                                نظرات
+                            </v-btn>
+                        </v-badge>
+
+                    </div>
+
                 </template>
             </v-data-table>
         </div>
+        <comments-dialog v-model="showCommentsDialog" :comments="comments"/>
 
     </div>
 </template>
 
 <script>
   import VueUploadMultipleImage from 'vue-upload-multiple-image'
+  import VButton from '../../../../components/global/Button'
+  import CommentsDialog from '../../../../components/CommentsDialog'
 
   export default {
     components: {
+      CommentsDialog,
+      VButton,
       VueUploadMultipleImage,
     },
     layout: 'dashboard',
     name: 'index',
     methods: {
+      showDialog (item) {
+        this.showCommentsDialog = true
+        this.comments = item.comments
+      },
+      hasUnSeen (item) {
+        return item.comments.find(e => e.seen === false)
+      },
+      unSeenLength (item) {
+        return item.comments.filter(e => !e.seen).length
+      },
       submit () {
         this.formData = this.convertToFormData(this.form, this.formData)
         this.$axios
@@ -124,6 +155,8 @@
     data () {
       return {
         items: [],
+        comments: [],
+        showCommentsDialog: false,
         loading: true,
         formData: null,
         headers: [
@@ -142,7 +175,7 @@
     created () {
       this.$axios(`menu_categories/${this.$route.params.id}/items`)
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data)
           this.items = res.data
           this.loading = false
         })
