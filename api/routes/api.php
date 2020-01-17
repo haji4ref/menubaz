@@ -41,10 +41,15 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('menu_categories/{id}/items', 'Menu\MenuCategoryController@items');
     Route::post('menu_categories/{id}/item', 'Menu\MenuItemController@createItem');
 
+    Route::post('menu_item/{id}', 'Menu\MenuItemController@edit');
+    Route::delete('menu_item/{id}', 'Menu\MenuItemController@delete');
+
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
 
     Route::post('comment/{id}/seen', 'CommentController@seen');
+
+    Route::get('gallery/{id}', 'Menu\GalleryController@show');
 
 });
 

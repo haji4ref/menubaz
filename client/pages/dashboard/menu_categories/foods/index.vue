@@ -13,13 +13,15 @@
                               placeholder="نام"></v-text-field>
 
                 <v-text-field type="number" class="mx-2" v-model="form.price"
-                              placeholder="قیمت به ریال"></v-text-field>
+                              placeholder="قیمت به تومان"></v-text-field>
 
                 <v-text-field class="mx-2" v-model="form.bolded_description"
                               placeholder="توضیحات مهم"></v-text-field>
 
 
-                <v-btn class="mr-3" @click="submit" color="success">اضافه کردن غذا</v-btn>
+                <v-btn class="mr-3" @click="submit" color="success">
+                    {{createOrEditLabel}}
+                </v-btn>
             </div>
 
             <div class="d-flex mb-3">
@@ -35,8 +37,10 @@
                             :data-images="form.image"
                             dragText="می تونید عکستونو درگ کنید"
                             browseText="می تونید عکستونو انتخاب کنید"
-                            primaryText="آپلود شد"
+                            primaryText=""
+                            markIsPrimaryText=""
                             @upload-success="imageUploaded"
+                            @edit-image="imageUploaded"
                     ></vue-upload-multiple-image>
                 </div>
 
@@ -52,7 +56,7 @@
             >
                 <template v-slot:item.action="{ item }">
                     <div class="d-flex">
-                        <v-btn outlined color="blue" small>
+                        <v-btn outlined color="blue" small @click="goToEdit(item)">
                             ویرایش
                         </v-btn>
 
@@ -72,6 +76,10 @@
                                 نظرات
                             </v-btn>
                         </v-badge>
+
+                        <v-btn outlined color="red" small @click="remove(item)">
+                            حذف
+                        </v-btn>
 
                     </div>
 
@@ -96,7 +104,38 @@
     },
     layout: 'dashboard',
     name: 'index',
+    computed: {
+      createOrEditLabel () {
+        return this.editItem ? ` ویرایش ${this.editItem.name}` : 'اضافه کردن غذا'
+      }
+    },
     methods: {
+      async goToEdit (item) {
+        try {
+          let gallery = await this.$axios.get(`gallery/${item.gallery_id}`)
+          this.form.image.push({
+            path: gallery.data.publicUrl,
+          })
+        } catch (e) {
+          console.log(e)
+        } finally {
+          this.api = `menu_item/${item.id}`
+          this.editItem = item
+          this.form.name = item.name
+          this.form.price = item.price
+          this.form.bolded_description = item.bolded_description
+          this.form.description = item.description
+        }
+
+      },
+      remove (item) {
+        this.$axios
+          .delete(`menu_item/${item.id}`)
+          .then(res => {
+            this.items = res.data
+            this.resetFields()
+          })
+      },
       showDialog (item) {
         this.showCommentsDialog = true
         this.comments = item.comments
@@ -110,17 +149,20 @@
       submit () {
         this.formData = this.convertToFormData(this.form, this.formData)
         this.$axios
-          .post(`menu_categories/${this.$route.params.id}/item`, this.formData, {
+          .post(this.api, this.formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
           })
           .then(res => {
+            this.items = res.data
             this.resetFields()
           })
       },
       resetFields () {
+        this.api = `menu_categories/${this.$route.params.id}/item`
         this.formData = null
+        this.editItem = null
         this.form = {
           name: '',
           price: '',
@@ -129,7 +171,7 @@
           image: []
         }
       },
-      imageUploaded (formData, index, fileList) {
+      imageUploaded (formData) {
         this.formData = formData
       },
       convertToFormData (form, form_data) {
@@ -163,6 +205,8 @@
           { text: 'نام', value: 'name' },
           { text: 'عملیات', value: 'action', sortable: false },
         ],
+        editItem: null,
+        api: `menu_categories/${this.$route.params.id}/item`,
         form: {
           name: '',
           price: '',
@@ -175,7 +219,6 @@
     created () {
       this.$axios(`menu_categories/${this.$route.params.id}/items`)
         .then((res) => {
-          console.log(res.data)
           this.items = res.data
           this.loading = false
         })

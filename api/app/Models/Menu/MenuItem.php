@@ -36,4 +36,15 @@ class MenuItem extends Model {
             ->name;
     }
 
+    public function deleteGallery()
+    {
+        if($this->gallery) {
+            $this->gallery->deleteFile();
+        }
+
+        $this->gallery->delete();
+
+        return $this;
+    }
+
 }
