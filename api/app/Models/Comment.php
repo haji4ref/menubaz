@@ -12,6 +12,8 @@ class Comment extends Model {
         'seen' => 'boolean'
     ];
 
+    protected $visible = ['id', 'seen', 'body', 'created_at'];
+
     /**
      * Get the owning commentable model.
      */

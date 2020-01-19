@@ -49,7 +49,11 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('comment/{id}/seen', 'CommentController@seen');
 
+    Route::get('user/comments/unseen', 'CommentController@getUnseenUserComments');
+    Route::get('user/comments', 'CommentController@userComments');
+
     Route::get('gallery/{id}', 'Menu\GalleryController@show');
+
 
 });
 

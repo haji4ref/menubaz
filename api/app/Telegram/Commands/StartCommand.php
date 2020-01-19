@@ -23,7 +23,7 @@ class StartCommand extends Command {
         ])->row(
             Keyboard::button(['text' => 'مشاهده منو', 'data' => 'aref']),
             Keyboard::button(['text' => 'درباره ما']),
-            Keyboard::button(['text' => 'ارسال عکس'])
+            Keyboard::button(['text' => 'ارسال نظر'])
         );
 
         Telegram::sendMessage([

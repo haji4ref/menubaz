@@ -21,7 +21,7 @@ class MenuItem extends Model {
     }
 
     /**
-     * Get all of the post's comments.
+     * Get all of the menu items's comments.
      */
     public function comments()
     {

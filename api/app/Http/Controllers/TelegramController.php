@@ -7,6 +7,7 @@ use App\Classes\Telegram\InlineHandlers\MenuItemsHandler;
 use App\Classes\Telegram\InlineHandlers\CommentMenuItemHandler;
 use App\Classes\Telegram\StateBasedHandlers\StateBasedHandler;
 use App\Classes\Telegram\TextHandlers\TextMenuHandler;
+use App\Classes\Telegram\TextHandlers\UserCommentHandler;
 use App\Models\Bot;
 use App\Models\Member;
 use ReflectionClass;
@@ -18,7 +19,8 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 class TelegramController extends Controller {
 
     private $expectedTexts = [
-        'مشاهده منو' => TextMenuHandler::class
+        'مشاهده منو' => TextMenuHandler::class,
+        'ارسال نظر'  => UserCommentHandler::class
     ];
 
     private $inlines = [

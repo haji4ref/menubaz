@@ -17,7 +17,8 @@ class StateBasedHandler {
     use TelegramTemplateMethod;
 
     private $state_based = [
-        'submit_comment_item' => SubmitCommentItemHandler::class
+        'submit_comment_item' => SubmitCommentItemHandler::class,
+        'submit_comment_user' => SubmitCommentUserHandler::class
     ];
 
     private $botWithPivot;

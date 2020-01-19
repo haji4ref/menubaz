@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Menu\MenuItem;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller {
@@ -20,6 +21,32 @@ class CommentController extends Controller {
         ]);
 
         return $item;
+    }
+
+    public function saveUser($user_id, $body)
+    {
+        $user = User::find($user_id)->comments()->create([
+            'body' => $body
+        ]);
+
+        return $user;
+    }
+
+    public function getUserComments()
+    {
+        $user = auth();
+
+        return $user->comments;
+    }
+
+    public function getUnseenUserComments()
+    {
+        return auth()->user()->comments()->where('seen', '=', false)->count();
+    }
+
+    public function userComments()
+    {
+        return auth()->user()->comments;
     }
 
     public function seen($id, Request $request)

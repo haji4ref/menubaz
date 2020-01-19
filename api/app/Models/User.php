@@ -133,4 +133,12 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail {
     {
         return $this->hasMany(Menu::class);
     }
+
+    /**
+     * Get all of the menu items's comments.
+     */
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }
