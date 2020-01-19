@@ -29,4 +29,13 @@ class MenuCategoryController extends Controller {
 
         return $item;
     }
+
+    public function delete($id)
+    {
+        $category = MenuCategory::findOrFail($id);
+
+        $category->delete();
+
+        return 'ok';
+    }
 }

@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('menu_categories/{id}/items', 'Menu\MenuCategoryController@items');
     Route::post('menu_categories/{id}/item', 'Menu\MenuItemController@createItem');
+    Route::delete('menu_categories/{id}', 'Menu\MenuCategoryController@delete');
 
     Route::post('menu_item/{id}', 'Menu\MenuItemController@edit');
     Route::delete('menu_item/{id}', 'Menu\MenuItemController@delete');
@@ -53,7 +54,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('user/comments', 'CommentController@userComments');
 
     Route::get('gallery/{id}', 'Menu\GalleryController@show');
-
 
 });
 
