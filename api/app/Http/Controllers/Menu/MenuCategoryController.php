@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Menu;
 
+use App\Http\Requests\Menu\CreateMenuCategoryRequest;
 use App\Http\Requests\Menu\CreateMenuItemRequest;
 use App\Models\Gallery;
 use App\Models\Menu\MenuCategory;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class MenuCategoryController extends Controller {
@@ -37,5 +37,14 @@ class MenuCategoryController extends Controller {
         $category->delete();
 
         return 'ok';
+    }
+
+    public function update($id, CreateMenuCategoryRequest $request)
+    {
+        $category = MenuCategory::findOrFail($id);
+
+        $category->update($request->all());
+
+        return $category;
     }
 }

@@ -9,9 +9,14 @@
         <div v-else>
 
             <div class="d-flex align-center">
-                <v-text-field @keydown.enter="addCategory" v-model="categoryName"
+                <v-text-field @keydown.enter="editMode ? editCategory() : addCategory()" v-model="categoryName"
                               placeholder="دسته بندی"></v-text-field>
-                <v-btn @click="addCategory" class="mr-3" color="success">اضافه کردن دسته بندی</v-btn>
+                <v-btn v-if="editMode" @click="editCategory" class="mr-3" color="success">ویرایش
+                    {{selectedForEdit.name}}
+                </v-btn>
+                <v-btn v-if="editMode" @click="clearEdit" class="mr-3" color="error">انصراف</v-btn>
+                <v-btn v-if="!editMode" @click="addCategory" class="mr-3" color="success">اضافه کردن دسته بندی</v-btn>
+
             </div>
 
             <v-data-table
@@ -69,7 +74,9 @@
       return {
         deleteConfirmShow: false,
         selectedForDelete: null,
+        selectedForEdit: null,
         menu: null,
+        editMode: false,
         loading: true,
         headers: [
           { text: 'نام', value: 'name' },
@@ -88,16 +95,32 @@
       async addCategory () {
         let category = await this.$axios.post(`menu/${this.menu.id}/categories`, { name: this.categoryName })
         this.categories.push(category.data)
-        this.categoryName = ''
+        this.clearEdit()
+      },
+      async editCategory () {
+        this.loading = true
+        await this.$axios.put(`menu_categories/${this.selectedForEdit.id}`, { name: this.categoryName })
+        this.getCategories()
       },
       goToFoods (item) {
         this.$router.push(`/dashboard/menu_categories/${item.id}/foods`)
+      },
+      goToEdit (item) {
+        this.editMode = true
+        this.categoryName = item.name
+        this.selectedForEdit = item
+      },
+      clearEdit () {
+        this.editMode = false
+        this.categoryName = ''
+        this.selectedForEdit = ''
       },
       async getCategories () {
         this.loading = true
         let categories = await this.$axios(`menu/${this.menu.id}/categories`)
         this.categories = categories.data
         this.loading = false
+        this.clearEdit()
       }
     },
     async created () {
