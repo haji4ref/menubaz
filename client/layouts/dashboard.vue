@@ -2,24 +2,29 @@
     <v-app id="inspire">
         <v-navigation-drawer v-model="drawer" app right>
             <v-list dense>
-                <v-list-item link>
-                    <v-list-item-action>
-                        <v-icon color="success">mdi-home</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            <nuxt-link class="text-decorate-none" to="/dashboard/roles">نقش ها</nuxt-link>
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
+                <!--<v-list-item link>-->
+                <!--<v-list-item-action>-->
+                <!--<v-icon color="success">mdi-home</v-icon>-->
+                <!--</v-list-item-action>-->
+                <!--<v-list-item-content>-->
+                <!--<nuxt-link class="text-decorate-none" to="/dashboard/roles">-->
+                <!--<v-list-item-title>-->
+                <!--نقش ها-->
+                <!--</v-list-item-title>-->
+                <!--</nuxt-link>-->
+                <!--</v-list-item-content>-->
+                <!--</v-list-item>-->
+
                 <v-list-item link>
                     <v-list-item-action>
                         <v-icon color="primary">mdi-robot</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
-                        <v-list-item-title>
-                            <nuxt-link class="text-decorate-none" to="/dashboard/bots">ربات ها</nuxt-link>
-                        </v-list-item-title>
+                        <nuxt-link class="text-decorate-none" to="/dashboard/bots">
+                            <v-list-item-title>
+                                ربات ها
+                            </v-list-item-title>
+                        </nuxt-link>
                     </v-list-item-content>
                 </v-list-item>
 
@@ -28,9 +33,11 @@
                         <v-icon color="error">mdi-file</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
-                        <v-list-item-title>
-                            <nuxt-link class="text-decorate-none" to="/dashboard/menus">مدیریت منو</nuxt-link>
-                        </v-list-item-title>
+                        <nuxt-link class="text-decorate-none" to="/dashboard/menus">
+                            <v-list-item-title>
+                                مدیریت منو
+                            </v-list-item-title>
+                        </nuxt-link>
                     </v-list-item-content>
                 </v-list-item>
 
@@ -39,25 +46,23 @@
                         <v-icon color="warning">mdi-comment</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
-                        <v-list-item-title>
-                            <nuxt-link class="text-decorate-none" to="/dashboard/comments">
+                        <nuxt-link class="text-decorate-none" to="/dashboard/comments">
+                            <v-list-item-title>
                                 <div class="d-flex justify-space-between">
-                                    <div >مدیریت نظرات</div>
-                                    <div v-if="unseen > 0" class="white--text red text-center pt-1" style="border-radius: 50%;width: 20px;height: 20px">{{unseen}}</div>
+                                    <div>مدیریت نظرات</div>
+                                    <div v-if="unseen > 0" class="white--text red text-center pt-1"
+                                         style="border-radius: 50%;width: 20px;height: 20px">{{unseen}}
+                                    </div>
                                 </div>
-
-
-                            </nuxt-link>
-                        </v-list-item-title>
+                            </v-list-item-title>
+                        </nuxt-link>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
 
         <v-app-bar app color="#0088cc" dark>
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer">
-                <v-icon>fa-bars</v-icon>
-            </v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title>داشبورد</v-toolbar-title>
         </v-app-bar>
 
