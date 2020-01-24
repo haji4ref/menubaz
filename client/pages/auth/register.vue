@@ -59,9 +59,17 @@
     methods: {
       submit () {
         if (this.form.password === this.form.password_confirmation) {
-          this.$axios.post('register', this.form).then((res) => {
-            console.log(res)
-          })
+          this
+            .$axios
+            .post('register', this.form)
+            .then((res) => {
+              return this.$auth.login({
+                data: this.form
+              })
+            })
+            .then((res) => {
+              this.$router.push('/verification')
+            })
         }
       }
     },
