@@ -40,9 +40,9 @@ class MenuItem extends Model {
     {
         if($this->gallery) {
             $this->gallery->deleteFile();
-        }
 
-        $this->gallery->delete();
+            $this->gallery->delete();
+        }
 
         return $this;
     }

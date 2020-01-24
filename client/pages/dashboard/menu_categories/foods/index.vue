@@ -1,5 +1,10 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
     <div>
+        <snack v-model="snackbar.show"
+               :color="snackbar.color"
+               :text="snackbar.text"
+               :timeout="snackbar.timeout"/>
+
         <v-progress-circular
                 v-if="loading"
                 indeterminate
@@ -22,6 +27,8 @@
                 <v-btn class="mr-3" @click="submit" color="success">
                     {{createOrEditLabel}}
                 </v-btn>
+
+                <v-btn v-if="editItem" @click="resetFields" class="mr-3" color="error">انصراف</v-btn>
             </div>
 
             <div class="d-flex mb-3">
@@ -95,9 +102,11 @@
   import VueUploadMultipleImage from 'vue-upload-multiple-image'
   import VButton from '../../../../components/global/Button'
   import CommentsDialog from '../../../../components/CommentsDialog'
+  import Snack from '../../../../components/utils/snack'
 
   export default {
     components: {
+      Snack,
       CommentsDialog,
       VButton,
       VueUploadMultipleImage,
@@ -110,6 +119,14 @@
       }
     },
     methods: {
+      showSuccess (msg) {
+        this.snackbar = {
+          show: true,
+          color: 'green',
+          text: msg,
+          timeout: 2000
+        }
+      },
       async goToEdit (item) {
         try {
           let gallery = await this.$axios.get(`gallery/${item.gallery_id}`)
@@ -134,6 +151,7 @@
           .then(res => {
             this.items = res.data
             this.resetFields()
+            this.showSuccess('با موفقیت پاک شد.')
           })
       },
       showDialog (item) {
@@ -157,6 +175,7 @@
           .then(res => {
             this.items = res.data
             this.resetFields()
+            this.showSuccess('با موفقیت ساخته شد.')
           })
       },
       resetFields () {
@@ -196,6 +215,12 @@
     },
     data () {
       return {
+        snackbar: {
+          show: false,
+          color: 'green',
+          text: '',
+          timeout: 2000
+        },
         items: [],
         comments: [],
         showCommentsDialog: false,

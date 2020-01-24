@@ -1,5 +1,9 @@
 <template>
     <div>
+        <snack v-model="snackbar.show"
+               :color="snackbar.color"
+               :text="snackbar.text"
+               :timeout="snackbar.timeout"/>
         <v-progress-circular
                 v-if="loading"
                 indeterminate
@@ -67,11 +71,20 @@
 </template>
 
 <script>
+  import Snack from '../../../components/utils/snack'
+
   export default {
     name: 'index',
+    components: { Snack },
     layout: 'dashboard',
     data () {
       return {
+        snackbar: {
+          show: false,
+          color: 'green',
+          text: '',
+          timeout: 2000
+        },
         deleteConfirmShow: false,
         selectedForDelete: null,
         selectedForEdit: null,
@@ -87,20 +100,31 @@
       }
     },
     methods: {
+      showSuccess (msg) {
+        this.snackbar = {
+          show: true,
+          color: 'green',
+          text: msg,
+          timeout: 2000
+        }
+      },
       async deleteCategory () {
         await this.$axios.delete(`menu_categories/${this.selectedForDelete.id}`)
         await this.getCategories()
         this.deleteConfirmShow = !this.deleteConfirmShow
+        this.showSuccess('با موفقیت پاک شد.')
       },
       async addCategory () {
         let category = await this.$axios.post(`menu/${this.menu.id}/categories`, { name: this.categoryName })
         this.categories.push(category.data)
         this.clearEdit()
+        this.showSuccess('با موفقیت ساخته شد.')
       },
       async editCategory () {
         this.loading = true
         await this.$axios.put(`menu_categories/${this.selectedForEdit.id}`, { name: this.categoryName })
         this.getCategories()
+        this.showSuccess('با موفقیت ویرایش شد')
       },
       goToFoods (item) {
         this.$router.push(`/dashboard/menu_categories/${item.id}/foods`)
