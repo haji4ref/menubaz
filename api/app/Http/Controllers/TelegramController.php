@@ -6,6 +6,7 @@ use App\Classes\Telegram\InlineHandlers\MenuItemHandler;
 use App\Classes\Telegram\InlineHandlers\MenuItemsHandler;
 use App\Classes\Telegram\InlineHandlers\CommentMenuItemHandler;
 use App\Classes\Telegram\StateBasedHandlers\StateBasedHandler;
+use App\Classes\Telegram\TextHandlers\AboutUsHandler;
 use App\Classes\Telegram\TextHandlers\TextMenuHandler;
 use App\Classes\Telegram\TextHandlers\UserCommentHandler;
 use App\Models\Bot;
@@ -20,13 +21,15 @@ class TelegramController extends Controller {
 
     private $expectedTexts = [
         'مشاهده منو' => TextMenuHandler::class,
-        'ارسال نظر'  => UserCommentHandler::class
+        'ارسال نظر'  => UserCommentHandler::class,
+        'درباره ما'  => AboutUsHandler::class
     ];
 
     private $inlines = [
         'menu_category' => MenuItemsHandler::class,
         'menu_item'     => MenuItemHandler::class,
-        'comment_item'  => CommentMenuItemHandler::class
+        'comment_item'  => CommentMenuItemHandler::class,
+        'show_menu'     => TextMenuHandler::class
     ];
 
     private function hasData($fields)
@@ -54,11 +57,6 @@ class TelegramController extends Controller {
         return (new ReflectionClass($class))->newInstance();
     }
 
-    private function resolveMethod($type)
-    {
-        return explode('@', $this->inlines[$type])[1];
-    }
-
     private function isCommand($fields)
     {
         return
@@ -71,14 +69,13 @@ class TelegramController extends Controller {
     /**
      * @param $token
      *
+     * @return array
      */
     public function webhook($token)
     {
         $bot = Bot::where('token', $token)->first();
 
         $fields = request()->all();
-
-        $chatId = $this->findFromId($fields);
 
         $member = $this->getMember($this->findFrom($fields));
 

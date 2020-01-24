@@ -45,9 +45,17 @@ class BotController extends Controller {
     {
         $bot = Bot::find($id);
 
-        $bot->contactUsMsg()->updateOrCreate([
-            'msg' => $request->get('contact_us_msg')
-        ]);
+        $contactMsg = $bot->contactUsMsg;
+
+        if($contactMsg) {
+            $contactMsg->update([
+                'msg' => $request->get('contact_us_msg')
+            ]);
+        } else {
+            $bot->contactUsMsg()->create([
+                'msg' => $request->get('contact_us_msg')
+            ]);
+        }
 
         return $this->show($id);
     }

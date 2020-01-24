@@ -39,7 +39,7 @@ class TextMenuHandler {
 
         $response = Telegram::sendMessage([
             'chat_id'      => $this->findChatId(),
-            'text'         => 'منو رستوران فلان',
+            'text'         => ' 📄' . ' منو ' . $bot->user->name . '📄 ',
             'reply_markup' => $keyboard
         ]);
     }

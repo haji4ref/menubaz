@@ -34,17 +34,28 @@ class MenuItemHandler {
 
         $keyboard = $this->makeKeyboard($item);
 
-        Telegram::sendPhoto([
-            'chat_id'      => $this->findChatId(),
-            'photo'        => InputFile::create(public_path($item->gallery->publicUrl), $item->gallery->name),
-            'caption'      => $string,
-            'parse_mode'   => 'Markdown',
-            'reply_markup' => $keyboard
-        ]);
-
-        Telegram::answerCallbackQuery([
-            'callback_query_id' => $this->findCallBackQueryId()
-        ]);
+        if($item->gallery) {
+            Telegram::sendPhoto([
+                'chat_id'      => $this->findChatId(),
+                'photo'        => InputFile::create(public_path($item->gallery->publicUrl), $item->gallery->name),
+                'caption'      => $string,
+                'parse_mode'   => 'Markdown',
+                'reply_markup' => $keyboard
+            ]);
+            Telegram::answerCallbackQuery([
+                'callback_query_id' => $this->findCallBackQueryId()
+            ]);
+        } else {
+            Telegram::sendMessage([
+                'chat_id'      => $this->findChatId(),
+                'text'         => $string,
+                'parse_mode'   => 'Markdown',
+                'reply_markup' => $keyboard
+            ]);
+            Telegram::answerCallbackQuery([
+                'callback_query_id' => $this->findCallBackQueryId()
+            ]);
+        }
 
     }
 
@@ -58,6 +69,10 @@ class MenuItemHandler {
         return Keyboard::make()
                        ->inline()
                        ->row(
+                           Keyboard::inlineButton([
+                               'text'          => 'مشاهده منو',
+                               'callback_data' => 'type=show_menu&values[-1]=-1'
+                           ]),
                            Keyboard::inlineButton([
                                'text'          => '❓' . 'نظرتو در مورد این غذا بگو' . '❓',
                                'callback_data' => 'type=comment_item&values[item_id]=' . $item->id
