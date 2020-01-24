@@ -11,47 +11,64 @@
                 color="primary"
         ></v-progress-circular>
 
-        <div v-else>
+        <v-container fluid v-else>
+            <v-row
+                    no-gutters
+            >
+                <v-col
 
-            <div class="d-flex align-center">
-                <v-text-field class="mx-2" v-model="form.name"
-                              placeholder="نام"></v-text-field>
+                        md="6"
+                >
+                    <v-text-field class="mx-2" v-model="form.name"
+                                  placeholder="نام"></v-text-field>
+                </v-col>
 
-                <v-text-field type="number" class="mx-2" v-model="form.price"
-                              placeholder="قیمت به تومان"></v-text-field>
+                <v-col cols="12"
+                       md="6">
+                    <v-text-field type="number" class="mx-2" v-model="form.price"
+                                  placeholder="قیمت به تومان"></v-text-field>
+                </v-col>
 
-                <v-text-field class="mx-2" v-model="form.bolded_description"
-                              placeholder="توضیحات مهم"></v-text-field>
+                <v-col cols="12"
+                       md="6">
+                    <v-text-field class="mx-2" v-model="form.bolded_description"
+                                  placeholder="توضیحات مهم"></v-text-field>
+                </v-col>
 
+                <v-col cols="12"
+                       md="6">
+                    <div class="mr-2 mt-2 d-flex justify-start">
+                        <div>
+                            عکس غذا
+                            <vue-upload-multiple-image
+                                    :multiple="false"
+                                    popupText=""
+                                    style="direction: ltr"
+                                    :data-images="form.image"
+                                    dragText="می تونید عکستونو درگ کنید"
+                                    browseText="می تونید عکستونو انتخاب کنید"
+                                    primaryText=""
+                                    markIsPrimaryText=""
+                                    @upload-success="imageUploaded"
+                                    @edit-image="imageUploaded"
+                            ></vue-upload-multiple-image>
+                        </div>
+                    </div>
+                </v-col>
 
-                <v-btn class="mr-3" @click="submit" color="success">
-                    {{createOrEditLabel}}
-                </v-btn>
+                <v-col cols="12">
+                    <v-textarea class="mr-3" v-model="form.description"
+                                placeholder="توضیحات"></v-textarea>
+                </v-col>
 
-                <v-btn v-if="editItem" @click="resetFields" class="mr-3" color="error">انصراف</v-btn>
-            </div>
+                <v-col cols="12" class="mb-3">
+                    <v-btn class="mr-3" @click="submit" color="success">
+                        {{createOrEditLabel}}
+                    </v-btn>
 
-            <div class="d-flex mb-3">
-                <v-textarea class="mr-3" v-model="form.description"
-                            placeholder="توضیحات"></v-textarea>
-
-                <div class="mr-3">
-                    عکس غذا
-                    <vue-upload-multiple-image
-                            :multiple="false"
-                            popupText=""
-                            style="direction: ltr"
-                            :data-images="form.image"
-                            dragText="می تونید عکستونو درگ کنید"
-                            browseText="می تونید عکستونو انتخاب کنید"
-                            primaryText=""
-                            markIsPrimaryText=""
-                            @upload-success="imageUploaded"
-                            @edit-image="imageUploaded"
-                    ></vue-upload-multiple-image>
-                </div>
-
-            </div>
+                    <v-btn v-if="editItem" @click="resetFields" class="mr-3" color="error">انصراف</v-btn>
+                </v-col>
+            </v-row>
 
             <v-data-table
                     dir="rtl"
@@ -92,7 +109,7 @@
 
                 </template>
             </v-data-table>
-        </div>
+        </v-container>
         <comments-dialog v-model="showCommentsDialog" :comments="comments"/>
 
     </div>

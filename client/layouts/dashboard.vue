@@ -63,7 +63,13 @@
 
         <v-app-bar app color="#0088cc" dark>
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-toolbar-title>داشبورد</v-toolbar-title>
+            <v-toolbar-title class="d-flex justify-space-between flex-grow-1 align-center">
+                <div>داشبورد</div>
+                <div class="d-flex align-center">
+                    <div class="subtitle-1 mx-2">{{$auth.user.name}}</div>
+                    <v-btn color="red lighten-1" @click="logout">خروج</v-btn>
+                </div>
+            </v-toolbar-title>
         </v-app-bar>
 
         <v-content>
@@ -91,6 +97,11 @@
       drawer: null,
       unseen: 0
     }),
+    methods: {
+      logout () {
+        this.$auth.logout()
+      }
+    },
     created () {
       this.$axios('user/comments/unseen').then(res => {
         this.unseen = res.data
