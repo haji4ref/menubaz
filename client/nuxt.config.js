@@ -30,7 +30,7 @@ module.exports = {
   loading: { color: '#007bff' },
 
   router: {
-    middleware: ['locale', 'auth']
+    middleware: ['locale']
   },
 
   css: [

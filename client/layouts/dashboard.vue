@@ -92,7 +92,7 @@
     props: {
       source: String
     },
-    middleware: 'verified',
+    middleware: ['auth', 'verified'],
     data: () => ({
       drawer: null,
       unseen: 0

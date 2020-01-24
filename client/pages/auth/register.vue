@@ -14,27 +14,24 @@
                         v-model="form.name"
                         label="نام و نام خانوادگی"
                         name="login"
-                        prepend-icon="fa-user"
-                        type="text"
-                />
+                        prepend-icon="mdi-face"
+                        type="text"></v-text-field>
 
                 <v-text-field
                         v-model="form.mobile"
                         id="password"
                         label="شماره موبایل"
                         name="password"
-                        prepend-icon="fa-mobile"
-                        type="text"
-                />
+                        prepend-icon="mdi-phone"
+                        type="text"></v-text-field>
 
                 <v-text-field
                         v-model="form.password"
                         id="password"
                         label="رمزعبور"
                         name="password"
-                        prepend-icon="fa-lock"
-                        type="password"
-                />
+                        prepend-icon="mdi-lock"
+                        type="password"></v-text-field>
 
                 <v-text-field
                         v-model="form.password_confirmation"
@@ -42,8 +39,7 @@
                         label="تکرار رمز عبور"
                         name="password"
                         prepend-icon="fa-lock"
-                        type="password"
-                />
+                        type="password"></v-text-field>
             </v-form>
         </v-card-text>
         <v-card-actions>

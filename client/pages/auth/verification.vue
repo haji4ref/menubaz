@@ -45,7 +45,7 @@
     methods: {
       async submit () {
         try {
-          await this.$axios.post('api/auth/verify', this.form)
+          await this.$axios.post('auth/verify', this.form)
           await this.$auth.fetchUser()
           this.$router.push('/dashboard')
         } catch (e) {

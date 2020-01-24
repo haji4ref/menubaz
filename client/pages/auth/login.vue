@@ -14,7 +14,7 @@
                         v-model="form.mobile"
                         label="شماره موبایل"
                         name="password"
-                        prepend-icon="fa-mobile"
+                        prepend-icon="mdi-face"
                         type="text"
                 />
 
@@ -22,7 +22,7 @@
                         v-model="form.password"
                         label="رمزعبور"
                         name="password"
-                        prepend-icon="fa-lock"
+                        prepend-icon="mdi-lock"
                         type="password"
                 />
             </v-form>
