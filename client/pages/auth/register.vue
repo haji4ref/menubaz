@@ -11,7 +11,7 @@
         <v-card-text>
             <v-form>
                 <v-text-field
-                        v-model="form.name"
+                        v-model="form.full_name"
                         label="نام و نام خانوادگی"
                         name="login"
                         prepend-icon="mdi-face"
@@ -76,7 +76,7 @@
     data () {
       return {
         form: {
-          name: '',
+          full_name: '',
           mobile: '',
           password: '',
           password_confirmation: '',
