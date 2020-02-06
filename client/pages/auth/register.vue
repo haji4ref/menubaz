@@ -49,12 +49,19 @@
                 ></v-text-field>
             </v-form>
         </v-card-text>
-        <v-card-actions>
-            <v-spacer />
-            <v-col cols="6" offset="3">
-                <v-btn color="primary" @click="submit" style="width:100%">عضو میشم</v-btn>
-            </v-col>
-        </v-card-actions>
+        <v-container>
+            <v-row class="justify-center">
+                <v-col cols="6" class="text-center">
+                    <v-btn color="primary" @click="submit" style="width:100%">عضو میشم</v-btn>
+                    <v-btn
+                        color="success"
+                        @click="$router.push('login')"
+                        text
+                        class="caption"
+                    >عضو هستم.</v-btn>
+                </v-col>
+            </v-row>
+        </v-container>
     </v-card>
 </template>
 

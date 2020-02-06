@@ -22,10 +22,28 @@
                 />
             </v-form>
         </v-card-text>
-        <v-card-actions>
-            <v-spacer />
-            <v-btn color="primary" @click="submit">ورود</v-btn>
-        </v-card-actions>
+        <v-container>
+            <v-row class="justify-center">
+                <v-col cols="6">
+                    <v-btn style="width:100%" color="success" @click="submit">ورود</v-btn>
+                </v-col>
+            </v-row>
+
+            <v-row class="justify-center">
+                <v-btn
+                    color="info"
+                    @click="$router.push('/register')"
+                    text
+                    class="caption"
+                >عضو نیستم</v-btn>
+                <v-btn
+                    color="warning"
+                    @click="$router.push('/register')"
+                    text
+                    class="caption"
+                >رمز عبورم را فراموش کردم</v-btn>
+            </v-row>
+        </v-container>
 
         <snack v-model="showSnack" color="red" text="شماره موبایل یا رمز عبور اشتباه است."></snack>
     </v-card>
