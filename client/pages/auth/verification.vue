@@ -47,7 +47,7 @@ export default {
     methods: {
         async submit() {
             try {
-                await this.$axios.post("auth/verify", this.form);
+                await this.$axios.post("auth/verify", this.convertedForm);
                 await this.$auth.fetchUser();
                 this.$router.push("/dashboard");
             } catch (e) {
@@ -56,9 +56,22 @@ export default {
                     this.snackMsg = e.response.data.message;
                 }
             }
+        },
+        convertToEnglish(str) {
+            return str.replace(/([۰-۹])/g, function(token) {
+                return String.fromCharCode(token.charCodeAt(0) - 1728);
+            });
         }
     },
-    created() {}
+    computed: {
+        convertedForm() {
+            let form = {};
+            Object.keys(this.form).forEach(e => {
+                form[e] = this.convertToEnglish(this.form[e]);
+            });
+            return form;
+        }
+    }
 };
 </script>
 

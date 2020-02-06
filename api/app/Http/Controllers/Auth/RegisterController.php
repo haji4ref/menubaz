@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
@@ -74,12 +75,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['full_name'],
             'mobile' => $data['mobile'],
             'verification_code' => $this->makeVerificationCode(),
             'password' => bcrypt($data['password'])
         ]);
+
+        event(new UserRegistered($user));
+
+        return $user;
     }
 
     private function makeVerificationCode()
