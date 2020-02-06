@@ -1,65 +1,67 @@
 <template>
     <v-card class="elevation-12">
-        <v-toolbar
-                color="primary"
-                dark
-                flat
-        >
+        <v-toolbar color="primary" dark flat>
             <v-toolbar-title>تایید هویت</v-toolbar-title>
-
         </v-toolbar>
         <v-card-text>
             <v-form>
                 <v-text-field
-                        v-model="form.verification_code"
-                        label="کد تایید هویت"
-                        name="password"
-                        prepend-icon="fa-num"
-                        type="text"
+                    v-model="form.verification_code"
+                    label="کد تایید هویت"
+                    name="password"
+                    prepend-icon="fa-num"
+                    type="text"
                 />
-
             </v-form>
         </v-card-text>
         <v-card-actions>
-            <v-spacer/>
+            <v-spacer />
             <v-btn color="primary" @click="submit">تایید</v-btn>
         </v-card-actions>
+
+        <snack v-model="showSnack" color="red" :text="snackMsg" />
     </v-card>
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        form: {
-          verification_code: '',
-        }
-      }
+import snack from "~/components/utils/snack";
+export default {
+    data() {
+        return {
+            form: {
+                verification_code: ""
+            },
+            showSnack: false,
+            snackMsg: ""
+        };
     },
-    layout: 'center',
-    asyncData ({ store, redirect }) {
-      if (store.state.auth.user.verified) {
-        return redirect('/dashboard')
-      }
+    components: {
+        snack
+    },
+    layout: "center",
+    asyncData({ store, redirect }) {
+        if (store.state.auth.user.verified) {
+            return redirect("/dashboard");
+        }
     },
     methods: {
-      async submit () {
-        try {
-          await this.$axios.post('auth/verify', this.form)
-          await this.$auth.fetchUser()
-          this.$router.push('/dashboard')
-        } catch (e) {
-
+        async submit() {
+            try {
+                await this.$axios.post("auth/verify", this.form);
+                await this.$auth.fetchUser();
+                this.$router.push("/dashboard");
+            } catch (e) {
+                if (e.response) {
+                    this.showSnack = true;
+                    this.snackMsg = e.response.data.message;
+                }
+                console.log(e);
+            }
         }
-
-      }
     },
-    created () {
-
-    }
-  }
+    created() {}
+};
 </script>
 
 <style>
-
 </style>
