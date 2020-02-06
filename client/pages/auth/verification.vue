@@ -55,7 +55,6 @@ export default {
                     this.showSnack = true;
                     this.snackMsg = e.response.data.message;
                 }
-                console.log(e);
             }
         }
     },

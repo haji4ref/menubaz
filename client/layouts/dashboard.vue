@@ -14,50 +14,47 @@
                 <!--</nuxt-link>-->
                 <!--</v-list-item-content>-->
                 <!--</v-list-item>-->
+                <nuxt-link class="text-decorate-none" to="/dashboard/bots">
+                    <v-list-item link>
+                        <v-list-item-action>
+                            <v-icon color="primary">mdi-robot</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title class="blue--text">ربات ها</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </nuxt-link>
 
-                <v-list-item link>
-                    <v-list-item-action>
-                        <v-icon color="primary">mdi-robot</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <nuxt-link class="text-decorate-none" to="/dashboard/bots">
-                            <v-list-item-title>
-                                ربات ها
-                            </v-list-item-title>
-                        </nuxt-link>
-                    </v-list-item-content>
-                </v-list-item>
+                <nuxt-link class="text-decorate-none" to="/dashboard/menus">
+                    <v-list-item link>
+                        <v-list-item-action>
+                            <v-icon color="error">mdi-file</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title class="blue--text">مدیریت منو</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </nuxt-link>
 
-                <v-list-item link>
-                    <v-list-item-action>
-                        <v-icon color="error">mdi-file</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <nuxt-link class="text-decorate-none" to="/dashboard/menus">
-                            <v-list-item-title>
-                                مدیریت منو
-                            </v-list-item-title>
-                        </nuxt-link>
-                    </v-list-item-content>
-                </v-list-item>
-
-                <v-list-item link>
-                    <v-list-item-action>
-                        <v-icon color="warning">mdi-comment</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <nuxt-link class="text-decorate-none" to="/dashboard/comments">
+                <nuxt-link class="text-decorate-none" to="/dashboard/comments">
+                    <v-list-item link>
+                        <v-list-item-action>
+                            <v-icon color="warning">mdi-comment</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
                             <v-list-item-title>
                                 <div class="d-flex justify-space-between">
-                                    <div>مدیریت نظرات</div>
-                                    <div v-if="unseen > 0" class="white--text red text-center pt-1"
-                                         style="border-radius: 50%;width: 20px;height: 20px">{{unseen}}
-                                    </div>
+                                    <div class="blue--text">مدیریت نظرات</div>
+                                    <div
+                                        v-if="unseen > 0"
+                                        class="white--text red text-center pt-1"
+                                        style="border-radius: 50%;width: 20px;height: 20px"
+                                    >{{unseen}}</div>
                                 </div>
                             </v-list-item-title>
-                        </nuxt-link>
-                    </v-list-item-content>
-                </v-list-item>
+                        </v-list-item-content>
+                    </v-list-item>
+                </nuxt-link>
             </v-list>
         </v-navigation-drawer>
 
@@ -76,7 +73,7 @@
             <v-container class="fill-height align-start" fluid>
                 <v-row justify="center">
                     <v-col>
-                        <nuxt/>
+                        <nuxt />
                     </v-col>
                 </v-row>
             </v-container>
@@ -88,24 +85,24 @@
 </template>
 
 <script>
-  export default {
+export default {
     props: {
-      source: String
+        source: String
     },
-    middleware: ['auth', 'verified'],
+    middleware: ["auth", "verified"],
     data: () => ({
-      drawer: null,
-      unseen: 0
+        drawer: null,
+        unseen: 0
     }),
     methods: {
-      logout () {
-        this.$auth.logout()
-      }
+        logout() {
+            this.$auth.logout();
+        }
     },
-    created () {
-      this.$axios('user/comments/unseen').then(res => {
-        this.unseen = res.data
-      })
+    created() {
+        this.$axios("user/comments/unseen").then(res => {
+            this.unseen = res.data;
+        });
     }
-  }
+};
 </script>

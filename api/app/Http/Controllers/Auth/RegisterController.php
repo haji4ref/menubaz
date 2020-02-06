@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller {
+class RegisterController extends Controller
+{
 
     use RegistersUsers;
 
@@ -41,7 +42,7 @@ class RegisterController extends Controller {
      */
     protected function registered(Request $request, User $user)
     {
-        if($user instanceof MustVerifyEmail) {
+        if ($user instanceof MustVerifyEmail) {
             return response()->json(['status' => trans('verification.sent')]);
         }
 
@@ -58,9 +59,9 @@ class RegisterController extends Controller {
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed'
         ]);
     }
 
@@ -74,10 +75,10 @@ class RegisterController extends Controller {
     protected function create(array $data)
     {
         return User::create([
-            'name'              => $data['name'],
-            'mobile'            => $data['mobile'],
+            'name' => $data['full_name'],
+            'mobile' => $data['mobile'],
             'verification_code' => $this->makeVerificationCode(),
-            'password'          => bcrypt($data['password']),
+            'password' => bcrypt($data['password'])
         ]);
     }
 
